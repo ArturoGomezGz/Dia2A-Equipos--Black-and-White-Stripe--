@@ -1,5 +1,4 @@
 #include<iostream>
-
 using namespace std;
 
 int main(){
@@ -13,23 +12,26 @@ int main(){
             cin>>stripe[i];
         }
 
-        int WMin=n;
-        
-        for(int i = 0; i<n-k+1; i++){
-            int W=0;
-            for (int j = i; j < k+i; j++){
-                if(stripe[j]=='W'){
-                    W++;
-                }
-            }
-            if(W<WMin){
-                WMin = W;
-            }
-            if(WMin==0){
-                break;
+        int WMin=0;
+        for (int i = 0; i < k; i++){
+            if(stripe[i]=='W'){
+                WMin++;
             }
         }
+        int W=WMin;
+        for(int i = 1; i<n-k+1; i++){
+            if (stripe[i-1]=='W'){
+                W--;
+            }
+            if (stripe[k+i-1]=='W'){
+                W++;
+            }
+            if (W<WMin){
+                WMin = W;
+            }
+            }
+
         cout<<WMin<<endl;
     }
-    return 0;
+    return 0;
 }
